@@ -1,12 +1,12 @@
 const categories = [
-  { code: "01", name: "Electronics", detail: "Audio, smart-home gear, accessories and connected devices" },
-  { code: "02", name: "Appliances", detail: "Small appliances, floor care and practical home equipment" },
-  { code: "03", name: "Home & Kitchen", detail: "Cookware, décor, storage and everyday household essentials" },
-  { code: "04", name: "Furniture", detail: "Accent pieces, office furniture, seating and home organization" },
-  { code: "05", name: "Clothing", detail: "Seasonal apparel, basics, footwear and accessories" },
-  { code: "06", name: "Outdoor & Patio", detail: "Outdoor living, garden supplies, recreation and seasonal gear" },
-  { code: "07", name: "Toys & Games", detail: "Family games, kids’ toys, activities and entertainment" },
-  { code: "08", name: "General Merchandise", detail: "Unexpected finds and useful products across every department" },
+  { code: "01", slug: "electronics", name: "Electronics", detail: "Audio, smart-home gear, accessories and connected devices" },
+  { code: "02", slug: "appliances", name: "Appliances", detail: "Small appliances, floor care and practical home equipment" },
+  { code: "03", slug: "home-kitchen", name: "Home & Kitchen", detail: "Cookware, décor, storage and everyday household essentials" },
+  { code: "04", slug: "furniture", name: "Furniture", detail: "Accent pieces, office furniture, seating and home organization" },
+  { code: "05", slug: "clothing", name: "Clothing", detail: "Seasonal apparel, basics, footwear and accessories" },
+  { code: "06", slug: "outdoor-patio", name: "Outdoor & Patio", detail: "Outdoor living, garden supplies, recreation and seasonal gear" },
+  { code: "07", slug: "toys-games", name: "Toys & Games", detail: "Family games, kids’ toys, activities and entertainment" },
+  { code: "08", slug: "general-merchandise", name: "General Merchandise", detail: "Unexpected finds and useful products across every department" },
 ];
 
 export default function Home() {
@@ -18,7 +18,19 @@ export default function Home() {
           <span>RECLAIM <b>&amp;</b> RETAIL</span>
         </a>
         <nav aria-label="Main navigation">
-          <a href="#shop">Shop</a><a href="#process">How it works</a><a href="#about">Our story</a>
+          <details className="category-menu">
+            <summary>Categories <span aria-hidden="true">⌄</span></summary>
+            <div className="category-dropdown">
+              <p>Shop by department</p>
+              {categories.map((category) => (
+                <a href={`#${category.slug}`} key={category.slug}>
+                  <span>{category.code}</span>{category.name}
+                </a>
+              ))}
+            </div>
+          </details>
+          <a className="nav-link" href="#process">How it works</a>
+          <a className="nav-link" href="#about">Our story</a>
         </nav>
         <a className="header-cta" href="#shop">Browse the latest <span>→</span></a>
       </header>
@@ -54,7 +66,7 @@ export default function Home() {
         </div>
         <div className="category-grid">
           {categories.map((category) => (
-            <article className="category-card" key={category.name}>
+            <article className="category-card" id={category.slug} key={category.name}>
               <span className="category-code" aria-hidden="true">{category.code}</span>
               <div><h3>{category.name}</h3><p>{category.detail}</p></div>
               <a href="mailto:hello@reclaimandretail.online?subject=Inventory%20question" aria-label={`Ask about ${category.name}`}>↗</a>
