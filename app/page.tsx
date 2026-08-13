@@ -1,8 +1,12 @@
 const categories = [
-  { icon: "⌁", name: "Electronics", detail: "Headphones, smart-home gear, accessories & more", tone: "mint" },
-  { icon: "◇", name: "Home & Living", detail: "Décor, kitchen finds, storage and everyday essentials", tone: "peach" },
-  { icon: "✦", name: "Clothing", detail: "Seasonal apparel, basics and one-of-a-kind finds", tone: "lilac" },
-  { icon: "◌", name: "General Goods", detail: "The useful, unexpected deals that make every drop different", tone: "blue" },
+  { code: "01", name: "Electronics", detail: "Audio, smart-home gear, accessories and connected devices" },
+  { code: "02", name: "Appliances", detail: "Small appliances, floor care and practical home equipment" },
+  { code: "03", name: "Home & Kitchen", detail: "Cookware, décor, storage and everyday household essentials" },
+  { code: "04", name: "Furniture", detail: "Accent pieces, office furniture, seating and home organization" },
+  { code: "05", name: "Clothing", detail: "Seasonal apparel, basics, footwear and accessories" },
+  { code: "06", name: "Outdoor & Patio", detail: "Outdoor living, garden supplies, recreation and seasonal gear" },
+  { code: "07", name: "Toys & Games", detail: "Family games, kids’ toys, activities and entertainment" },
+  { code: "08", name: "General Merchandise", detail: "Unexpected finds and useful products across every department" },
 ];
 
 export default function Home() {
@@ -50,8 +54,8 @@ export default function Home() {
         </div>
         <div className="category-grid">
           {categories.map((category) => (
-            <article className={`category-card ${category.tone}`} key={category.name}>
-              <span className="category-icon" aria-hidden="true">{category.icon}</span>
+            <article className="category-card" key={category.name}>
+              <span className="category-code" aria-hidden="true">{category.code}</span>
               <div><h3>{category.name}</h3><p>{category.detail}</p></div>
               <a href="mailto:hello@reclaimandretail.online?subject=Inventory%20question" aria-label={`Ask about ${category.name}`}>↗</a>
             </article>
